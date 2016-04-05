@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .back{
+            width: 80%;
+            margin-left: 10%;
+            position: relative;
+        }
+        .back img,.back span{
+            position: relative;
+        }
+        .back img{
+            width: 70%;
+            margin-left: 15%;
+            margin-top: 15%;
+            z-index: 5;
+
+        }
+        .back span{
+            display: block;
+            z-index: 10;
+            text-align: center;
+            letter-spacing: 4px;
+            font-weight: 900;
+            text-shadow: 2px 2px 2px #fcf9b6;
+            color: #dd9e37;
+            margin: auto;
+        }
+		.but{
+            width: 34%;
+            height: 60px;
+            margin-left: 30%;
+            background-color: #fcf9b6;
+            border: none;
+            border-radius: 10px;
+            font-size: 25px;
+            letter-spacing: 30px;
+            display: inline-block;
+            text-align: center;
+            padding-left: 30px;
+            color: red;
+        }
+    </style>
+    <script>
+        var i = 0;
+        var a = "ahead.png";
+        var b = "break.png";
+
+        window.onload =function(){
+            var oBut = document.getElementById("but");
+            var myId = document.getElementById("myId");
+            var myImage = document.getElementById("myImage");
+            var myVal = document.getElementById("myVal");
+            //屏幕适应
+            var h = myId.offsetWidth;
+            myId.style.height = parseInt(h)+"px";
+            myVal.style.width = parseInt(h/10*4)+"px";
+            myVal.style.height = parseInt(h/20*3)+"px";
+            myVal.style.top= -parseInt(h/2-h/40*3)+"px";
+            myVal.style.lineHeight = parseInt(h/20*3)+"px";
+            myVal.style.fontSize=parseInt(h/5)+"px";
+
+            oBut.onclick = function () {
+                if(oBut.value == "开始"){
+                    oBut.value = "停止";
+                    rotateCartoon();
+                }else{
+                    oBut.value = "开始";
+                    clearTimeout(T);
+                    myImage.style.transform="rotateY(0deg)";
+                    myVal.style.display="block";
+                    myVal.style.transform="rotateY(0deg)";
+                    myImage.src = a;
+                }
+            }
+        }
+        function rotateCartoon(){
+            i=i+30;
+            i=i%360;
+            myImage.style.transform="rotateY("+i+"deg)";
+            if(i%360 >= 90 && i%360 <= 270 ){
+                myVal.style.display="none";
+                myImage.src =b;
+            }else{
+                if(i==300){
+                    myVal.innerHTML = parseInt(Math.random()*1000);
+                    myImage.src = a;
+                }
+
+                myVal.style.display="block";
+                myVal.style.transform="rotateY("+i+"deg)";
+            }
+            T = setTimeout("rotateCartoon()",10);
+
+        }
+
+    </script>
+</head>
+<body>
+<div class="back" id="myId">
+    <img src="ahead.png" id="myImage">
+    <span id="myVal">000</span>
+</div>
+<input id="but" type="button" value="开始" class="but">
+</body>
+</html>
