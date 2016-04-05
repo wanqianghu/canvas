@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh" >
+<head>
+    <meta charset="gbk" />
+    <title>HTML5 Canvas中处理鼠标事件</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        input{
+            height: 60px;
+            width: 100px;
+            background: #406BDD;
+        }
+    </style>
+    <script src="requestNextAnimationFrame.js"></script>
+    <script src="index.js"></script>
+</head>
+<body>
+<div class="container">
+
+    <canvas id="scene" width="600" height="400" style="border: 1px solid #CCC"></canvas>
+    <input type="button" value="向下" id="down">
+    <input type="button" value="向上" id="up">
+    <input id="delete" type="button" value="删除">
+</div>
+</body>
+</html>
